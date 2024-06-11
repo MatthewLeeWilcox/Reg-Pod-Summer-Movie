@@ -1,0 +1,7 @@
+shiny
+shinywidgets
+plotly.express
+pandas
+faicons
+boxoffice_api
+shinyswatch

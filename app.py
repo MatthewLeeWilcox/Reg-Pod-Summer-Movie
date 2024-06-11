@@ -5,7 +5,9 @@ import pandas as pd
 from GetBoxOffice import getMovieBoxOfficeResult
 from faicons import icon_svg
 import os
+import shinyswatch
 app_ui = ui.page_fluid(
+    shinyswatch.theme.superhero(),
     ui.panel_title("Regulation Summer Movie Auction Results"),
     ui.navset_pill_list(
         ui.nav_panel("Podium", output_widget("BarPlot")),
@@ -21,11 +23,11 @@ app_ui = ui.page_fluid(
 from datetime import datetime
 today = str(datetime.today().strftime("%Y %m %d")).replace(" ", "") + ".csv"
 
-# if os.path.isfile(today) == True:
-# movies = pd.read_csv(today)
-# else:
-movies = getMovieBoxOfficeResult()
-#     movies.to_csv(today)
+if os.path.isfile(today) == True:
+    movies = pd.read_csv(today)
+else:
+    movies = getMovieBoxOfficeResult()
+movies.to_csv(today)
 movies['Daily'] = movies['Daily'].astype(float)
 
 
